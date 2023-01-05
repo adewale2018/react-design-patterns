@@ -1,19 +1,42 @@
-import SplitScreen from './components/SplitScreen/SplitScreen';
+import { people, products } from './DummyData';
 
-const LeftHandComponent = () => {
-  return <h1 style={{ backgroundColor: 'steelblue' }}>Left!</h1>;
-};
-
-const RightHandComponent = () => {
-  return <h1 style={{ backgroundColor: 'orangered' }}>Right!</h1>;
-};
+import LargePersonListItem from './components/List/people/LargePeopleListItem';
+import LargeProductListItem from './components/List/products/LargeProductItem';
+import NumberedList from './components/List/NumberedList';
+import RegularList from './components/List/RegularList';
+import SmallPeopleListItem from './components/List/people/SmallPeopleListItem';
+import SmallProductListItem from './components/List/products/SmallProductItem';
 
 const App = () => {
   return (
-    <SplitScreen leftWeight={3} rightWeight={5}>
-      <LeftHandComponent />
-      <RightHandComponent />
-    </SplitScreen>
+    <>
+      <RegularList
+        items={people}
+        resourceName='person'
+        itemComponent={SmallPeopleListItem}
+      />
+      <RegularList
+        items={people}
+        resourceName='person'
+        itemComponent={LargePersonListItem}
+      />
+      <hr />
+      <RegularList
+        items={products}
+        resourceName='product'
+        itemComponent={SmallProductListItem}
+      />
+      <NumberedList
+        items={products}
+        resourceName='product'
+        itemComponent={LargeProductListItem}
+      />
+      <RegularList
+        items={products}
+        resourceName='product'
+        itemComponent={LargeProductListItem}
+      />
+    </>
   );
 };
 
