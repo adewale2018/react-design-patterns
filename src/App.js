@@ -1,28 +1,36 @@
-import { people, products } from './DummyData';
+import UnControlledOnboarding from './components/ControlledAndUnControlledComponents/UnControlledUnboarding';
 
-import CurrentUserLoader from './components/ContainerComponents/CurrentUserLoader';
-import LargePersonListItem from './components/List/people/LargePeopleListItem';
-import LargeProductListItem from './components/List/products/LargeProductItem';
-import Modal from './components/Modal/Modal';
-import NumberedList from './components/List/NumberedList';
-import RegularList from './components/List/RegularList';
-import SmallPeopleListItem from './components/List/people/SmallPeopleListItem';
-import SmallProductListItem from './components/List/products/SmallProductItem';
-import UserInfo from './components/ContainerComponents/UsersInfo/UsersInfo';
-import UserLoader from './components/ContainerComponents/UserLoader';
+const StepOne = ({ goToNext }) => (
+  <>
+    <h1>STEP ONE</h1>
+    <button onClick={() => goToNext({ name: 'Saheed'})}>Next</button>
+  </>
+);
+
+const StepTwo = ({ goToNext, goToPrev }) => (
+  <>
+    <h1>STEP TWO</h1>
+    <button onClick={() => goToNext ({ age: 39})}>Next</button>
+    <button onClick={goToPrev}>Prev</button>
+  </>
+);
+
+const StepThree = ({ goToNext, goToPrev }) => (
+  <>
+    <h1>STEP THREE</h1>
+    <button onClick={() => goToNext({ hairColor: 'brown'})}>Next</button>
+    <button onClick={goToPrev}>Prev</button>
+  </>
+);
 
 const App = () => {
   return (
     <>
-      <UserLoader userId='24434'>
-        <UserInfo />
-      </UserLoader>
-      <UserLoader userId='2094'>
-        <UserInfo />
-      </UserLoader>
-      <UserLoader userId='20012'>
-        <UserInfo />
-      </UserLoader>
+      <UnControlledOnboarding onFinish={data => console.log('DATA>>>', data)}>
+        <StepOne />
+        <StepTwo />
+        <StepThree />
+      </UnControlledOnboarding>
     </>
   );
 };
